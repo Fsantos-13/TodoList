@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs")%>
+<div class="todo-list-body">
+    <h1>Todo List</h1>
+    <div class="new-list-item">
+        <form action="/todo" method="POST">
+            <label for="todo-item">New to do item</label>
+        </br>
+            <input type="text" id="todo-item" name="task">
+        </br>
+            <button type="submit">Add task</button>
+        </form>
+    </div>
+    <div id="list-checklist">
+        <div id="checklist">
+            <form action="/checkTodo" method="POST">
+                <% if(locals.todoList) %>
+                <ul>
+                    <% todoList.forEach((item, index)=>{ %>
+                        <li>
+                            <input class="todo-checkbox" type="checkbox" id="todo-item-<%=index%>" name="completeTodo" value="<%= index %>"> 
+                            <label for="todo-item-<%=index%>"><%= item %></label> 
+                        </li>
+                    <%})%>
+                </ul>
+                <button id="bottom-button"type="submit">Remove Completed</button>
+            </form>
+        </div> 
+    </div>
+</div>
+
+
+<%- include("partials/footer.ejs")%>
+
+
+
